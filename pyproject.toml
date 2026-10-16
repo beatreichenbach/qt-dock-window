@@ -1,0 +1,62 @@
+[project]
+name = "qt-dock-window"
+version = "0.1.0"
+description = "A modular, dockable window for Qt with splitters, tabs and floating docks."
+authors = [
+    {name = "Beat Reichenbach"}
+]
+dependencies = [
+    "qtpy>=2.0,<3",
+    "qt-material-icons>=0.2,<1",
+]
+requires-python = ">=3.9"
+license = "GPL-3.0-or-later"
+readme = "README.md"
+
+[project.urls]
+Repository = "https://github.com/beatreichenbach/qt-dock-window"
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit>=4.0",
+    "python-semantic-release>=10.0",
+    "pytest>=8.0",
+    "qt-themes>=0.2",
+    "ruff>=0.16",
+    "ty>=0.0.82",
+    "PySide6>=6.0",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["qt_dock_window*"]
+
+[tool.setuptools.package-data]
+qt_dock_window = ["py.typed"]
+
+[tool.semantic_release]
+allow_zero_version = true
+version_variables = ["qt_dock_window/__init__.py:__version__"]
+version_toml = ["pyproject.toml:project.version"]
+
+[tool.semantic_release.remote]
+ignore_token_for_push = true
+
+[tool.ruff]
+target-version = "py39"
+
+[tool.ruff.format]
+quote-style = 'single'
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "UP", "B", "SIM", "ANN", "RUF"]
+
+[tool.pytest.ini_options]
+log_cli = true
+log_level = "INFO"
+
+[tool.ty.environment]
+python-version = "3.9"
